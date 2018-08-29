@@ -15,7 +15,7 @@ export class LoginGuardGuard implements CanActivate {
 
   canActivate() {
 
-    if(this._usuarioService.estaLogueado()) {
+    if (this._usuarioService.estaLogueado()) {
       console.log(' PADO EL GUARD ');
       return true;
     } else {
@@ -24,7 +24,7 @@ export class LoginGuardGuard implements CanActivate {
       return false;
     }
 
-    return true;
+    // return true;
 
   }
 }
