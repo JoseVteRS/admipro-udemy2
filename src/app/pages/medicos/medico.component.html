@@ -1,0 +1,64 @@
+<div class="row animated fadeIn">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Médico:<b> {{ medico.nombre }}</b> </h4>
+                <h6 class="card-subtitle">Actualiza el nombre y el hospital asignado al médico</h6>
+
+                <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarMedico( f )" class="form p-t-20">
+                    <div class="form-group">
+                        <label>Nombre del medico</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input [(ngModel)]="medico.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del médico" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hospital</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-home"></i></div>
+
+                            <select (change)="cambioHospital( $event.target.value )" [(ngModel)]="medico.hospital" name="hospital" class="form-control" required>
+                              <option value="">Seleccione Hospital</option>
+                              <option *ngFor="let hospital of hospitales" [value]="hospital._id"> {{ hospital.nombre }} </option>
+                            </select>
+
+                        </div>
+                    </div>
+   
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i class="ti-save"></i> Guardar</button>
+                    <a routerLink="/medicos" class="btn btn-inverse waves-effect waves-light"><i class="ti-close"></i> Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="medico._id" class="col-md-3">
+        <div class="card">
+           <div class="card-body">
+   
+             <h4 class="card-title">Fotografia del médico</h4>
+             <h6 class="card-subtitle">Cambia la fotografia actual del médico</h6>
+             <img (click)="cambiarFoto()" [src]="medico.img | imagen:'medico'" class="img-circle img-fluid pointer" alt="">
+             
+           </div>
+         </div>
+       </div>
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+
+          <h4 class="card-title">Hospital</h4>
+          <h6 class="card-subtitle">Hospital asignado al médico actual</h6>
+          <img [src]="hospital.img | imagen:'hospital'" class=" rounded img-fluid" alt="">
+
+        </div>
+      </div>
+      
+    </div>
+
+
+
+</div>

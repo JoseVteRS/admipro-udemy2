@@ -53,7 +53,7 @@ export class ModalUploadComponent implements OnInit {
       .then(resp => {
 
         this._modalUploadService.notificacion.emit( resp );
-        this.cerrarModal();
+        this.cerrarModal ();
 
       })
       .catch(err => {

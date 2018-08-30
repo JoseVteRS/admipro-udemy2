@@ -48,7 +48,7 @@ export class UsuarioService {
     this.token = token;
    }
 
-   logout(){
+   logout() {
      this.usuario = null;
      this.token = '';
      localStorage.removeItem('token');
@@ -71,8 +71,6 @@ export class UsuarioService {
         );
 
   }
-
-
 
    login( usuario: Usuario, recordar: boolean = false ) {
 
@@ -120,7 +118,7 @@ export class UsuarioService {
         .pipe(
           map( (resp: any) => {
             // this.usuario - usuario logueado actualmente , usuario._id - usuario respuesta de la funcion
-            if (usuario._id === this.usuario._id){
+            if (usuario._id === this.usuario._id) {
               let usuarioDB: Usuario = resp.usuario;
               this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
             }
