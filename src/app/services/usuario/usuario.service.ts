@@ -5,8 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 
 import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs/internal/observable/throwError'
- }
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
@@ -26,6 +25,29 @@ export class UsuarioService {
     public _subirArchivoService: SubirArchivoService
   ) {
     this.cargarStorage();
+   }
+
+   renuevaToken() {
+
+    let url = URL_SERVICIOS + ' /login/renuevatoken';
+    url += '?token=' + this.token;
+
+   return this.http.get( url )
+    .pipe(
+      map( (resp: any) => {
+        this.token = resp.token;
+        localStorage.setItem('token', this.token);
+        console.log('Token renovado');
+
+        return true;
+      }),
+      catchError(err => {
+        this.router.navigate(['/login']);
+        swal('No se pudo renovar el token de autentificación', 'No fue posible el token', 'error');
+        return throwError(err);
+      })
+    );
+
    }
 
 

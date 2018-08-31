@@ -13,9 +13,9 @@ import { Hospital } from '../../models/hospital.model';
 })
 export class BusquedaComponent implements OnInit {
 
-  usuarios: Usuario[] = [],
-  medicos: Medico[] = [],
-  hospitales: Hospital[] = []
+  usuarios: Usuario[] = [];
+  medicos: Medico[] = [];
+  hospitales: Hospital[] = [];
 
   constructor(
     public activatedRoute: ActivatedRoute,
